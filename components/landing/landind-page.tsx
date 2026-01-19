@@ -176,11 +176,11 @@ export default function NuvicaLandingPage() {
                   transform: `translateY(${scrollY * 0.1}px) scale(0.75)`,
                 }}
               />
-              <div className="relative w-full max-w-md lg:max-w-lg animate-float">
+              <div className="relative w-full max-w-md animate-float">
                 <img 
                  src="/nuvica.jpeg" 
                   alt="Nuvica AGE 400 Packaging" 
-                  className="w-full h-auto drop-shadow-2xl relative z-10"
+                  className="rounded-3xl drop-shadow-2xl relative z-10"
                 />
                 {/* Floating Elements */}
                 <div className="absolute -top-4 -right-4 w-20 h-20 bg-gradient-to-br from-yellow-400 to-orange-500 rounded-full flex items-center justify-center shadow-xl animate-bounce-slow">
@@ -346,14 +346,14 @@ export default function NuvicaLandingPage() {
                   <div className="relative w-full h-full flex items-center justify-center">
                     <div className="absolute inset-0 bg-purple-400/20 rounded-2xl blur-xl" />
                     {/* <span className="relative text-purple-900 font-bold text-center text-sm sm:text-base">🍓 Antioxidant Complex</span> */}
-                     <img src="/pink.webp" alt="" />
+                     <img src="/125.png" alt="" />
                   </div>
                 </div>
                 <div className="aspect-square rounded-3xl bg-gradient-to-br from-pink-100 to-pink-200 flex items-center justify-center p-6 sm:p-8 hover:scale-105 transition-transform duration-300 shadow-xl">
                   <div className="relative w-full h-full flex items-center justify-center">
                     <div className="absolute inset-0 bg-pink-400/20 rounded-2xl blur-xl" />
                     {/* <span className="relative text-pink-900 font-bold text-center text-sm sm:text-base">🌿 Botanical Extracts</span> */}
-                     <img src="/red.webp" alt="" />
+                     <img src="/129.webp" alt="" />
                   </div>
                 </div>
               </div>
@@ -594,10 +594,10 @@ export default function NuvicaLandingPage() {
                 <ArrowRight className="group-hover:translate-x-1 transition-transform" size={22} />
               </span>
             </button>
-            <div className="flex items-center gap-2 px-6 py-3 rounded-full bg-white/10 backdrop-blur-sm border border-white/20">
+            {/* <div className="flex items-center gap-2 px-6 py-3 rounded-full bg-white/10 backdrop-blur-sm border border-white/20">
               <Award className="text-white" size={20} />
               <span className="font-semibold">30-Day Money-Back Guarantee</span>
-            </div>
+            </div> */}
           </div>
 
           <div className="mt-12 grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-8 text-center">
