@@ -1,8 +1,10 @@
 "use client"
 import { useEffect, useRef, useState } from 'react';
-import { CheckCircle, Zap, ArrowRight, Menu, X, Beaker, Shield, Star, Heart, Sparkles, ChevronDown, Award, Leaf, Clock } from 'lucide-react';
+import { useRouter } from 'next/navigation';
+import { CheckCircle, Zap, ArrowRight, Menu, X, Beaker, Shield, Star, Heart, Sparkles, ChevronDown, Award, Leaf, Clock, Package } from 'lucide-react';
 
 export default function NuvicaLandingPage() {
+  const router = useRouter();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrollY, setScrollY] = useState(0);
   const [isVisible, setIsVisible] = useState<{ [key: string]: boolean }>({});
@@ -77,7 +79,19 @@ export default function NuvicaLandingPage() {
                 Reviews
                 <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary group-hover:w-full transition-all duration-300" />
               </a>
-              <button className="relative group overflow-hidden rounded-full bg-gradient-to-r from-primary to-chart-2 px-6 py-2.5 text-white font-semibold">
+              <button 
+                onClick={() => router.push('/track-order')}
+                className="relative group overflow-hidden rounded-full border-2 border-primary/30 bg-transparent hover:bg-primary/10 px-5 py-2 text-foreground font-semibold transition-all"
+              >
+                <span className="relative z-10 flex items-center gap-2">
+                  <Package size={16} />
+                  Track Order
+                </span>
+              </button>
+              <button 
+                onClick={() => router.push('/product')}
+                className="relative group overflow-hidden rounded-full bg-gradient-to-r from-primary to-chart-2 px-6 py-2.5 text-white font-semibold"
+              >
                 <span className="relative z-10">Shop Now</span>
                 <div className="absolute inset-0 bg-white/20 transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left" />
               </button>
@@ -101,7 +115,17 @@ export default function NuvicaLandingPage() {
               <a href="#science" className="block py-2 hover:text-primary transition-colors">Science</a>
               <a href="#ingredients" className="block py-2 hover:text-primary transition-colors">Ingredients</a>
               <a href="#testimonials" className="block py-2 hover:text-primary transition-colors">Reviews</a>
-              <button className="w-full rounded-full bg-gradient-to-r from-primary to-chart-2 px-6 py-3 text-white font-semibold">
+              <button 
+                onClick={() => { setIsMenuOpen(false); router.push('/track-order'); }}
+                className="w-full rounded-full border-2 border-primary/30 bg-transparent px-6 py-3 text-foreground font-semibold flex items-center justify-center gap-2"
+              >
+                <Package size={18} />
+                Track Order
+              </button>
+              <button 
+                onClick={() => { setIsMenuOpen(false); router.push('/product'); }}
+                className="w-full rounded-full bg-gradient-to-r from-primary to-chart-2 px-6 py-3 text-white font-semibold"
+              >
                 Shop Now
               </button>
             </div>
@@ -140,7 +164,10 @@ export default function NuvicaLandingPage() {
               </p>
 
               <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
-                <button className="group relative w-full sm:w-auto overflow-hidden rounded-full bg-gradient-to-r from-primary to-chart-2 px-8 py-4 text-lg font-bold text-white shadow-2xl shadow-primary/30 hover:shadow-primary/50 hover:-translate-y-1 transition-all">
+                <button 
+                  onClick={() => router.push('/product')}
+                  className="group relative w-full sm:w-auto overflow-hidden rounded-full bg-gradient-to-r from-primary to-chart-2 px-8 py-4 text-lg font-bold text-white shadow-2xl shadow-primary/30 hover:shadow-primary/50 hover:-translate-y-1 transition-all"
+                >
                   <span className="relative z-10 flex items-center justify-center gap-2">
                     Order Your Pack 
                     <ArrowRight className="group-hover:translate-x-1 transition-transform" size={20} />
@@ -588,7 +615,10 @@ export default function NuvicaLandingPage() {
           </p>
           
           <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
-            <button className="group relative overflow-hidden w-full sm:w-auto bg-white text-primary px-10 py-5 rounded-full font-bold text-lg shadow-2xl hover:shadow-white/30 hover:-translate-y-1 transition-all">
+            <button 
+              onClick={() => router.push('/product')}
+              className="group relative overflow-hidden w-full sm:w-auto bg-white text-primary px-10 py-5 rounded-full font-bold text-lg shadow-2xl hover:shadow-white/30 hover:-translate-y-1 transition-all"
+            >
               <span className="relative z-10 flex items-center justify-center gap-2">
                 Order Now
                 <ArrowRight className="group-hover:translate-x-1 transition-transform" size={22} />
