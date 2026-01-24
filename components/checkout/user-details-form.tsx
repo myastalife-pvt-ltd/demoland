@@ -74,8 +74,13 @@ export function UserDetailsForm({ onContinue, onBack }: UserDetailsFormProps) {
         setPincodeStatus("success");
         setPincodeMessage(`${result.data.city || result.data.district}, ${result.data.state}`);
       } else {
+        // Clear state and city on error
+        setUserDetails({
+          state: "",
+          city: "",
+        });
         setPincodeStatus("error");
-        setPincodeMessage(result.error || "Unable to find location");
+        setPincodeMessage(result.error || "Invalid pincode. Please enter a valid 6-digit Indian pincode.");
       }
     }
   };
@@ -245,7 +250,6 @@ export function UserDetailsForm({ onContinue, onBack }: UserDetailsFormProps) {
 
             {/* State & City - Two Column on larger screens */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              {/* State */}
               <div>
                 <label htmlFor="state" className="flex items-center gap-2 text-sm font-semibold text-foreground mb-2">
                   <MapPin className="w-4 h-4 text-primary" />
@@ -255,10 +259,10 @@ export function UserDetailsForm({ onContinue, onBack }: UserDetailsFormProps) {
                   <input
                     id="state"
                     type="text"
-                    placeholder="State"
+                    placeholder="Auto-filled from pincode"
                     value={userDetails.state || ""}
-                    onChange={(e) => setUserDetails({ state: e.target.value })}
-                    className={`${inputClasses("state")} ${pincodeStatus === "success" ? "bg-emerald-50/50" : ""}`}
+                    readOnly
+                    className={`${inputClasses("state")} ${pincodeStatus === "success" ? "bg-emerald-50/50" : "bg-muted/30"} cursor-not-allowed`}
                   />
                 </div>
                 {getFieldError(validationErrors, "state") && (
@@ -268,7 +272,6 @@ export function UserDetailsForm({ onContinue, onBack }: UserDetailsFormProps) {
                 )}
               </div>
 
-              {/* City */}
               <div>
                 <label htmlFor="city" className="flex items-center gap-2 text-sm font-semibold text-foreground mb-2">
                   <MapPin className="w-4 h-4 text-primary" />
@@ -278,10 +281,10 @@ export function UserDetailsForm({ onContinue, onBack }: UserDetailsFormProps) {
                   <input
                     id="city"
                     type="text"
-                    placeholder="City"
+                    placeholder="Auto-filled from pincode"
                     value={userDetails.city || ""}
-                    onChange={(e) => setUserDetails({ city: e.target.value })}
-                    className={`${inputClasses("city")} ${pincodeStatus === "success" ? "bg-emerald-50/50" : ""}`}
+                    readOnly
+                    className={`${inputClasses("city")} ${pincodeStatus === "success" ? "bg-emerald-50/50" : "bg-muted/30"} cursor-not-allowed`}
                   />
                 </div>
                 {getFieldError(validationErrors, "city") && (
@@ -323,10 +326,12 @@ export function UserDetailsForm({ onContinue, onBack }: UserDetailsFormProps) {
                 <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
                 Back
               </button>
+              
+              {/* Continue button - disabled when pincode is not verified */}
               <button
                 type="submit"
-                disabled={isSubmitting}
-                className="flex-1 group relative overflow-hidden rounded-xl bg-gradient-to-r from-primary to-chart-2 py-4 text-white font-bold shadow-xl shadow-primary/30 hover:shadow-primary/50 hover:-translate-y-0.5 transition-all disabled:opacity-60 disabled:cursor-not-allowed"
+                disabled={isSubmitting || pincodeStatus !== "success"}
+                className="flex-1 group relative overflow-hidden rounded-xl bg-gradient-to-r from-primary to-chart-2 py-4 text-white font-bold shadow-xl shadow-primary/30 hover:shadow-primary/50 hover:-translate-y-0.5 transition-all disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:translate-y-0 disabled:shadow-none"
               >
                 <span className="relative z-10 flex items-center justify-center gap-2">
                   {isSubmitting ? (
